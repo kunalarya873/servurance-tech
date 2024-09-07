@@ -4,6 +4,7 @@ from rest_framework.decorators import action
 from rest_framework import status
 from .models import Stock
 from .serializers import StockSerializer
+from django.shortcuts import render
 
 class StockViewSet(viewsets.ModelViewSet):
     queryset = Stock.objects.all()
@@ -38,3 +39,6 @@ class StockViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+def home(request):
+    return render(request, "index.html")
